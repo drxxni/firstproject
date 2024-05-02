@@ -43,5 +43,5 @@ class Object:
         Label(frame2, text='\n', bg='peach puff', fg='peach puff').grid(row=0, column=4)
         Button(frame2, text='РЕШИТЬ', font='calibri, 30', bg='green').grid(row=1, column=4)
         self.master.mainloop()
-
+print("HII")
 Object()
