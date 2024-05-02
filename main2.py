@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import ttk
 
 class Object:
     def __init__(self):
@@ -38,10 +39,10 @@ class Object:
         # frame3.pack()
         Label(frame1, text='c:', font='calibri, 13', bg='peach puff').grid(row=0, column=5)
         Entry(frame1).grid(row=0, column=6)
-        frame2 = Frame(self.master)
+        frame2 = ttk.Frame(self.master)
         frame2.pack()
-        Label(frame2, text='\n', bg='peach puff', fg='peach puff').grid(row=0, column=4)
-        Button(frame2, text='РЕШИТЬ', font='calibri, 30', bg='green').grid(row=1, column=4)
+        # Label(frame2, text='\n', bg='peach puff', fg='peach puff').grid(row=0, column=4)
+        Button(frame2, text='РЕШИТЬ', font='calibri, 30', bg='green').grid(row=1, column=4, pady=10)
         self.master.mainloop()
 print("HII")
 Object()
