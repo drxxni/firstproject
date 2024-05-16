@@ -30,19 +30,61 @@ class Object:
         frame1 = Frame(self.master)
         frame1.pack()
         Label(frame1, text='a:', font='calibri, 13', bg='peach puff').grid(row=0, column=1)
-        Entry(frame1).grid(row=0, column=2)
+        self.entra = Entry(frame1)
+        self.entra.grid(row=0, column=2)
         # frame2 = Frame(self.master)
         # frame2.pack()
         Label(frame1, text='b:', font='calibri, 13', bg='peach puff').grid(row=0, column=3)
-        Entry(frame1).grid(row=0, column=4)
+        self.entrb = Entry(frame1)
+        self.entrb.grid(row=0, column=4)
         # frame3 = Frame(self.master)
         # frame3.pack()
         Label(frame1, text='c:', font='calibri, 13', bg='peach puff').grid(row=0, column=5)
-        Entry(frame1).grid(row=0, column=6)
-        frame2 = ttk.Frame(self.master)
+        self.entrc = Entry(frame1)
+        self.entrc.grid(row=0, column=6)
+        s = ttk.Style()
+        s.configure('style.TFrame', background='peach puff')
+        frame2 = ttk.Frame(self.master, style='style.TFrame')
         frame2.pack()
         # Label(frame2, text='\n', bg='peach puff', fg='peach puff').grid(row=0, column=4)
-        Button(frame2, text='РЕШИТЬ', font='calibri, 30', bg='green').grid(row=1, column=4, pady=10)
+        Button(frame2, text='РЕШИТЬ', font='calibri, 30', bg='green', command=self.solve).grid(row=1, column=2, pady=10)
+        self.lbl_d = Label(frame2, bg='peach puff')
+        self.lbl_d.grid(row=3, column=1)
+        self.lbl_res = Label(frame2, bg='peach puff')
+        self.lbl_res.grid(row=3, column=2)
         self.master.mainloop()
-print("HII")
+
+    def solve(self):
+        self.a = int(self.entra.get())
+        self.b = int(self.entrb.get())
+        self.c = int(self.entrc.get())
+
+        if self.a == 0:
+            s = "Коэффициент а не может быть равен нулю!"
+
+        self.d = self.b ** 2 + 4 * self.a * self.c
+        if self.a > 0 and self.c > 0:
+            dd = f'Найдем дискриминант: D = b² - 4ac = ({self.b})² - 4 * {self.a} * {self.c} = {self.d}'
+        elif self.a < 0:
+            dd = f'Найдем дискриминант: D = b² - 4ac = ({self.b})² - 4 * ({self.a}) * {self.c} = {self.d}'
+        elif self.c > 0:
+            dd = f'Найдем дискриминант: D = b² - 4ac = ({self.b})² - 4 * {self.a} * ({self.c}) = {self.d}'
+
+        if self.d > 0:
+            self.x1 = -self.b + self.d / 2 * self.a
+            self.x2 = -self.b + self.d / 2 * self.a
+            s = f'Найдем корни: x1 = (-b + √D)/2 * a = (-{self.b} + √{self.d})/2 * {self.a} = {self.x1} x2 = (-b - √D)/2 * a = (-{self.b} - √{self.d})/2 *{self.a} = {self.x2}'
+
+        elif self.d == 0:
+            self.x = -self.b / 2 * self.a
+            s = f'Найдем корень: x = -b/2 * a = (-{self.b}/2 * {self.a} = {self.x}'
+
+
+        elif self.d < 0:
+            s = 'Решений нет.'
+
+        self.lbl_d.grid(text=dd)
+
+        self.lbl_res.config(text=s, font='calibri, 15', bg='peach puff', fg='rosybrown4')
+
 Object()
