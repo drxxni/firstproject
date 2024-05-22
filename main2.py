@@ -49,26 +49,26 @@ class Object:
         # Label(frame2, text='\n', bg='peach puff', fg='peach puff').grid(row=0, column=4)
         Button(frame2, text='РЕШИТЬ', font='calibri, 30', bg='green', command=self.solve).grid(row=1, column=2, pady=10)
         self.lbl_d = Label(frame2, bg='peach puff')
-        self.lbl_d.grid(row=3, column=1)
+        self.lbl_d.grid(row=3, column=2)
         self.lbl_res = Label(frame2, bg='peach puff')
-        self.lbl_res.grid(row=3, column=2)
+        self.lbl_res.grid(row=10, column=2)
         self.master.mainloop()
 
     def solve(self):
-        self.a = int(self.entra.get())
-        self.b = int(self.entrb.get())
-        self.c = int(self.entrc.get())
+        self.a = float(self.entra.get())
+        self.b = float(self.entrb.get())
+        self.c = float(self.entrc.get())
 
         if self.a == 0:
             s = "Коэффициент а не может быть равен нулю!"
 
-        self.d = self.b ** 2 + 4 * self.a * self.c
+        self.d = self.b ** 2 - 4 * self.a * self.c
         if self.a > 0 and self.c > 0:
-            dd = f'Найдем дискриминант: D = b² - 4ac = ({self.b})² - 4 * {self.a} * {self.c} = {self.d}'
+            dd = f'Найдем дискриминант: D = b² - 4ac = ({self.b})² - 4 * {self.a} * {self.c} = {self.d}\n'
         elif self.a < 0:
-            dd = f'Найдем дискриминант: D = b² - 4ac = ({self.b})² - 4 * ({self.a}) * {self.c} = {self.d}'
+            dd = f'Найдем дискриминант: D = b² - 4ac = ({self.b})² - 4 * ({self.a}) * {self.c} = {self.d}\n'
         elif self.c > 0:
-            dd = f'Найдем дискриминант: D = b² - 4ac = ({self.b})² - 4 * {self.a} * ({self.c}) = {self.d}'
+            dd = f'Найдем дискриминант: D = b² - 4ac = ({self.b})² - 4 * {self.a} * ({self.c}) = {self.d}\n'
 
         if self.d > 0:
             self.x1 = -self.b + self.d / 2 * self.a
@@ -77,13 +77,13 @@ class Object:
 
         elif self.d == 0:
             self.x = -self.b / 2 * self.a
-            s = f'Найдем корень: x = -b/2 * a = (-{self.b}/2 * {self.a} = {self.x}'
+            s = f'Найдем корень: x = (-b/2) * a = (-{self.b}/2) * {self.a} = {self.x}'
 
 
         elif self.d < 0:
             s = 'Решений нет.'
 
-        self.lbl_d.grid(text=dd)
+        self.lbl_d.config(text=dd, font='calibri, 15', bg='peach puff', fg='rosybrown4')
 
         self.lbl_res.config(text=s, font='calibri, 15', bg='peach puff', fg='rosybrown4')
 
